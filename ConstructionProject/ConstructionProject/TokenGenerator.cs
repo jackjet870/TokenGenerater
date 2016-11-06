@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static ConstructionProject.TokenGeneratorHelper;
 
+
+/*
+ * Author : BILAL ASIF MIRZA
+   DATE CREATED : 6/11/2016
+*/
 
 namespace ConstructionProject
 {

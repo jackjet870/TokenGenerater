@@ -17,31 +17,31 @@ namespace ConstructionProject
     class TokenGenerator
     {
        
-        StringBuilder generatedTokens;
-        string[] sourceCode;
-        string[] literals;
-        string[] keyWords;
-        char[] punctuations;
-        string[] operators;
-       
+        private StringBuilder tokenBuilder;
 
-        const string LITERAL = @"[a-zA-Z_][a-zA-Z0-9_]*";
+        private string[] keyWords;
+        private string[] operators;
+        private string[] punctuation;
+
+
+        const string IDENTIFIER = @"[a-zA-Z_][a-zA-Z0-9_]*";
         const string NUMBER = @"([\+|\-]?[0-9]([0-9]*([\.][0-9]*)?)(([e|E][+|-]?[0-9]+)?))";
+        const string OPERATOR = @"(\+(\+|\=)?|\-(\-|\=)?|\*(\=)?|\/(\=)?|\!(\=)?|\=(\=?))";
+        const string LITERAL = @"(\\"")(.*)?(\"")";
+
+        private string[] breakedSourceCode;
+
         private void Init()
         {
-            generatedTokens = new StringBuilder(); 
-            sourceCode = TokenGeneratorHelper.GetSourceCode(@"E:\Visual Studio 15 WorkSpace\Univeristy\ConstructionProject\ConstructionProject\Program.cs");
-            keyWords = TokenGeneratorHelper.GetKeywords();
-            punctuations = TokenGeneratorHelper.GetPunctuations();
-            operators = TokenGeneratorHelper.GetOperators();
+            keyWords = System.IO.File.ReadAllLines(@"..\Debug\Keywords.txt");
+            punctuation = System.IO.File.ReadAllLines(@"..\Debug\Punctuations.txt");
+            tokenBuilder = new StringBuilder();
         }
-       
-
-        private bool IsKeyword(string lexeme)
+        private bool IsKeyWord(string lexeme)
         {
-           foreach(string keyWord in keyWords)
+           foreach(string keyword in keyWords)
             {
-                if(keyWord == lexeme)
+                if (lexeme == keyword)
                 {
                     return true;
                 }
@@ -49,42 +49,74 @@ namespace ConstructionProject
             return false;
         }
 
-        private bool IsOperator(string lexmeme)
+        private bool IsIdentifier(string lexeme)
         {
-            foreach(string opertor in operators)
-            {
-                if(opertor == lexmeme)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Regex.IsMatch(lexeme, IDENTIFIER, RegexOptions.Compiled);
         }
 
-        private bool IsPunctuation()
+        private bool IsNumber(string lexeme)
         {
-            throw new NotImplementedException();
+            return Regex.IsMatch(lexeme, NUMBER);
+            
         }
 
+        private bool IsOperator(string lexeme)
+        {
+            return Regex.IsMatch(lexeme, OPERATOR);
+        }
         private bool IsLiteral(string lexeme)
         {
             return Regex.IsMatch(lexeme, LITERAL);
         }
-        public string GenerateToken()
+
+        private bool IsPunctuation(string lexeme)
+        {
+            foreach(string punctuations in punctuation)
+            {
+                if(lexeme == punctuations)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public string GenerateToken(string sourceCode)
         {
             Init();
-            foreach(string s in sourceCode)
+            breakedSourceCode = sourceCode.Split(new char[] { ' ', '\n' });
+            foreach(string s in breakedSourceCode)
             {
-                if(IsKeyword(s))
+                if(IsKeyWord(s))
                 {
-                    generatedTokens.AppendLine($"keyword {s}");
+                    tokenBuilder.AppendLine($"KeyWord --- {s}");
+                }
+                else if(IsIdentifier(s))
+                {
+                    tokenBuilder.AppendLine($"Identifer --- {s}");
+
+                }
+               
+                else if(IsOperator(s))
+                {
+                    tokenBuilder.AppendLine($"Operator --- {s}");
+
                 }
                 else if(IsLiteral(s))
                 {
-                    generatedTokens.AppendLine($"Literal {s}");
+                    tokenBuilder.AppendLine($"Literal --- {s}");
+                }
+                else if(IsNumber(s))
+                {
+                    tokenBuilder.AppendLine($"Number --- {s}");
+
+                }
+                else if(IsPunctuation(s))
+                {
+                    tokenBuilder.AppendLine($"Punctuation --- {s}");
                 }
             }
-            return generatedTokens.ToString(); 
+            return tokenBuilder.ToString();
         }
-    }
+
 }

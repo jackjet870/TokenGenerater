@@ -4,3 +4,9 @@ E:\Visual Studio 15 WorkSpace\Univeristy\ConstructionProject\ConstructionProject
 E:\Visual Studio 15 WorkSpace\Univeristy\ConstructionProject\ConstructionProject\obj\Debug\ConstructionProject.exe
 E:\Visual Studio 15 WorkSpace\Univeristy\ConstructionProject\ConstructionProject\obj\Debug\ConstructionProject.pdb
 E:\Visual Studio 15 WorkSpace\Univeristy\ConstructionProject\ConstructionProject\obj\Debug\ConstructionProject.csprojResolveAssemblyReference.cache
+C:\Users\BilalAM\Documents\GitHub\TokenGenerate\ConstructionProject\ConstructionProject\bin\Debug\ConstructionProject.exe.config
+C:\Users\BilalAM\Documents\GitHub\TokenGenerate\ConstructionProject\ConstructionProject\obj\Debug\ConstructionProject.exe
+C:\Users\BilalAM\Documents\GitHub\TokenGenerate\ConstructionProject\ConstructionProject\obj\Debug\ConstructionProject.pdb
+C:\Users\BilalAM\Documents\GitHub\TokenGenerate\ConstructionProject\ConstructionProject\obj\Debug\ConstructionProject.csprojResolveAssemblyReference.cache
+C:\Users\BilalAM\Documents\GitHub\TokenGenerate\ConstructionProject\ConstructionProject\bin\Debug\ConstructionProject.exe
+C:\Users\BilalAM\Documents\GitHub\TokenGenerate\ConstructionProject\ConstructionProject\bin\Debug\ConstructionProject.pdb

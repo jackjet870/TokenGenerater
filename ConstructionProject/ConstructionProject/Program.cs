@@ -12,7 +12,7 @@ namespace ConstructionProject
         static void Main(string[] args)
         {
             TokenGenerator generator = new TokenGenerator();
-           string s =  generator.GenerateToken();
+         //  string s =  generator.GenerateToken();
             ReadLine();
         }
     }

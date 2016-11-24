@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static ConstructionProject.TokenGeneratorHelper;
 
 
 /*
@@ -16,7 +15,7 @@ namespace ConstructionProject
 {
     class TokenGenerator
     {
-       
+
         private StringBuilder tokenBuilder;
 
         private string[] keyWords;
@@ -39,7 +38,7 @@ namespace ConstructionProject
         }
         private bool IsKeyWord(string lexeme)
         {
-           foreach(string keyword in keyWords)
+            foreach (string keyword in keyWords)
             {
                 if (lexeme == keyword)
                 {
@@ -57,7 +56,7 @@ namespace ConstructionProject
         private bool IsNumber(string lexeme)
         {
             return Regex.IsMatch(lexeme, NUMBER);
-            
+
         }
 
         private bool IsOperator(string lexeme)
@@ -71,9 +70,9 @@ namespace ConstructionProject
 
         private bool IsPunctuation(string lexeme)
         {
-            foreach(string punctuations in punctuation)
+            foreach (string punctuations in punctuation)
             {
-                if(lexeme == punctuations)
+                if (lexeme == punctuations)
                 {
                     return true;
                 }
@@ -85,38 +84,40 @@ namespace ConstructionProject
         {
             Init();
             breakedSourceCode = sourceCode.Split(new char[] { ' ', '\n' });
-            foreach(string s in breakedSourceCode)
+            foreach (string s in breakedSourceCode)
             {
-                if(IsKeyWord(s))
+                if (IsKeyWord(s))
                 {
                     tokenBuilder.AppendLine($"KeyWord --- {s}");
                 }
-                else if(IsIdentifier(s))
+                else if (IsIdentifier(s))
                 {
                     tokenBuilder.AppendLine($"Identifer --- {s}");
 
                 }
-               
-                else if(IsOperator(s))
+
+                else if (IsOperator(s))
                 {
                     tokenBuilder.AppendLine($"Operator --- {s}");
 
                 }
-                else if(IsLiteral(s))
+                else if (IsLiteral(s))
                 {
                     tokenBuilder.AppendLine($"Literal --- {s}");
                 }
-                else if(IsNumber(s))
+                else if (IsNumber(s))
                 {
                     tokenBuilder.AppendLine($"Number --- {s}");
 
                 }
-                else if(IsPunctuation(s))
+                else if (IsPunctuation(s))
                 {
                     tokenBuilder.AppendLine($"Punctuation --- {s}");
                 }
             }
             return tokenBuilder.ToString();
         }
+
+    }
 
 }
